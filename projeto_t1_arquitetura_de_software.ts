@@ -5,6 +5,8 @@
 // Padrao de projeto: Abstract Factory
 // Conceito: Uma fabrica que produz jogos de mesa
 
+// Interfaces abstratas
+
 interface Bule{
     material(): string;
     descricao_formato(): string;
@@ -44,6 +46,8 @@ interface Jogo_Cha_Factory{
     criarAcucareiro(): Acucareiro;
     criarLeiteira_Cremeira(): Leiteira_Cremeira;
 }
+
+// Produtos concretos
 
 class Bule_Classico implements Bule{
     material(): string {
@@ -108,24 +112,6 @@ class Leiteira_Cremeira_Classico implements Leiteira_Cremeira{
     }
     cor(): string{
         return "Azul real"
-    }
-}
-
-class Jogo_Classico implements Jogo_Cha_Factory{
-    criarBule(): Bule{
-        return new Bule_Classico();
-    }
-    criarXicara(): Xicara{
-        return new Xicara_Classico();
-    }
-    criarPires(): Pires{
-        return new Pires_Classico();
-    }
-    criarAcucareiro(): Acucareiro{
-        return new Acucareiro_Classico();
-    }
-    criarLeiteira_Cremeira(): Leiteira_Cremeira{
-        return new Leiteira_Cremeira_Classico();
     }
 }
 
@@ -195,6 +181,92 @@ class Leiteira_Cremeira_Moderno implements Leiteira_Cremeira{
     }
 }
 
+class Bule_Vintage implements Bule{
+    material(): string {
+        return "Porcelana Decorada";
+    }
+    descricao_formato(): string{
+        return "Formato ovalada e muito decorado com flores e arabescos";
+    }
+    cor(): string{
+        return "Estampa Floral"
+    }
+}
+
+class Xicara_Vintage implements Xicara{
+    material(): string {
+        return "Porcelana Decorada";
+    }
+    descricao_formato(): string{
+        return "Arredondadas e com bordas onduladas";
+    }
+    cor(): string{
+        return "Estampa Floral"
+    }
+    qtd(): number{
+        return 6;
+    }
+}
+
+class Pires_Vintage implements Pires{
+    material(): string{
+        return "Porcelana Decorada";
+    }
+    descricao_formato(): string{
+        return "Combina com a xicara e detalhes florais na borda";
+    }
+    cor(): string{
+        return "Estampa Floral"
+    }
+    qtd(): number{
+        return 6;
+    }
+}
+
+class Acucareiro_Vintage implements Acucareiro{
+    material(): string {
+        return "Porcelana Decorada";
+    }
+    descricao_formato(): string{
+        return "Tampa arredondada e alca decorativa";
+    }
+    cor(): string{
+        return "Estampa Floral"
+    }
+}
+
+class Leiteira_Cremeira_Vintage implements Leiteira_Cremeira{
+    material(): string {
+        return "Porcelana Decorada";
+    }
+    descricao_formato(): string{
+        return "Com curvas, detalhes pintados e alca trabalhada";
+    }
+    cor(): string{
+        return "Estampa Floral"
+    }
+}
+
+// Fabricas abstratas
+
+class Jogo_Classico implements Jogo_Cha_Factory{
+    criarBule(): Bule{
+        return new Bule_Classico();
+    }
+    criarXicara(): Xicara{
+        return new Xicara_Classico();
+    }
+    criarPires(): Pires{
+        return new Pires_Classico();
+    }
+    criarAcucareiro(): Acucareiro{
+        return new Acucareiro_Classico();
+    }
+    criarLeiteira_Cremeira(): Leiteira_Cremeira{
+        return new Leiteira_Cremeira_Classico();
+    }
+}
+
 class Jogo_Moderno implements Jogo_Cha_Factory{
     criarBule(): Bule{
         return new Bule_Moderno();
@@ -213,6 +285,26 @@ class Jogo_Moderno implements Jogo_Cha_Factory{
     }
 }
 
+class Jogo_Vintage implements Jogo_Cha_Factory{
+    criarBule(): Bule{
+        return new Bule_Vintage();
+    }
+    criarXicara(): Xicara{
+        return new Xicara_Vintage();
+    }
+    criarPires(): Pires{
+        return new Pires_Vintage();
+    }
+    criarAcucareiro(): Acucareiro{
+        return new Acucareiro_Vintage();
+    }
+    criarLeiteira_Cremeira(): Leiteira_Cremeira{
+        return new Leiteira_Cremeira_Vintage();
+    }
+}
+
+// Fabrica Concreta
+
 function montarJogo(factory: Jogo_Cha_Factory) {
   const b = factory.criarBule();
   const x = factory.criarXicara();
@@ -225,15 +317,11 @@ function montarJogo(factory: Jogo_Cha_Factory) {
   console.log(`Descricao: ${b.descricao_formato()}`);
   console.log(`Cor: ${b.cor()}`);
 
-  console.log("");
-
   console.log("-- Xicara --");
   console.log(`Material: ${x.material()}`);
   console.log(`Descricao: ${x.descricao_formato()}`);
   console.log(`Cor: ${x.cor()}`);
   console.log(`Quantidade = ${x.qtd()}`);
-
-  console.log("");
 
   console.log("-- Pires --");
   console.log(`Material: ${p.material()}`);
@@ -241,20 +329,18 @@ function montarJogo(factory: Jogo_Cha_Factory) {
   console.log(`Cor: ${p.cor()}`);
   console.log(`Quantidade = ${p.qtd()}`);
 
-  console.log("");
-
   console.log("-- Acucareira --");
   console.log(`Material: ${a.material()}`);
   console.log(`Descricao: ${a.descricao_formato()}`);
   console.log(`Cor: ${a.cor()}`);
-
-  console.log("");
 
   console.log("-- Leiteira ou Cremeira --");
   console.log(`Material: ${l_c.material()}`);
   console.log(`Descricao: ${l_c.descricao_formato()}`);
   console.log(`Cor: ${l_c.cor()}`);
 }
+
+// Demonstração
 
 console.log("-- Fabricando jogo de chá --");
 console.log("Estilo: Classico");
@@ -265,3 +351,9 @@ console.log("");
 console.log("-- Fabricando jogo de chá --");
 console.log("Estilo: Moderno");
 montarJogo(new Jogo_Moderno());
+
+console.log("");
+
+console.log("-- Fabricando jogo de chá --");
+console.log("Estilo: Vintage");
+montarJogo(new Jogo_Vintage());
