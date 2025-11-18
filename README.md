@@ -2,11 +2,16 @@ Instruções para instalação
 - Tenha o node.js instalado (https://nodejs.org/en/download)
 - com o arquivo do código baixado, para preparar o ambiente, certifique-se de que executou esses comandos em seu terminal:
 
-	npm init -y;
+	npm init -y
+
 	npm install typescript ts-node --save-dev
+
 	npx tsc --init
+
 	npm install @types/node --save-dev
+
 	npm install --save-dev @types/prompt-sync
+
 	npm install prompt-sync
 
 - comando para compilar e executar o arquivo npm start (Isso porque no package.json adicione em "scripts" para "start": "npx ts-node --esm projeto_t1_arquitetura_de_software.ts")
