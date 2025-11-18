@@ -1,16 +1,23 @@
 {
   "name": "projeto_a_s",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npx ts-node --esm projeto_t1_arquitetura_de_software.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/prompt-sync": "^4.2.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
   }
 }

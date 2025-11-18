@@ -5,6 +5,9 @@
 // Padrao de projeto: Abstract Factory
 // Conceito: Uma fabrica que produz jogos de mesa
 
+import promptSync from "prompt-sync";
+const prompt = promptSync();
+
 // Interfaces abstratas
 
 interface Bule{
@@ -312,48 +315,76 @@ function montarJogo(factory: Jogo_Cha_Factory) {
   const a = factory.criarAcucareiro();
   const l_c = factory.criarLeiteira_Cremeira();
 
+  console.log("");
   console.log("-- Bule --");
   console.log(`Material: ${b.material()}`);
   console.log(`Descricao: ${b.descricao_formato()}`);
   console.log(`Cor: ${b.cor()}`);
+  console.log("");
 
   console.log("-- Xicara --");
   console.log(`Material: ${x.material()}`);
   console.log(`Descricao: ${x.descricao_formato()}`);
   console.log(`Cor: ${x.cor()}`);
   console.log(`Quantidade = ${x.qtd()}`);
+  console.log("");
 
   console.log("-- Pires --");
   console.log(`Material: ${p.material()}`);
   console.log(`Descricao: ${p.descricao_formato()}`);
   console.log(`Cor: ${p.cor()}`);
   console.log(`Quantidade = ${p.qtd()}`);
+  console.log("");
 
   console.log("-- Acucareira --");
   console.log(`Material: ${a.material()}`);
   console.log(`Descricao: ${a.descricao_formato()}`);
   console.log(`Cor: ${a.cor()}`);
+  console.log("");
 
   console.log("-- Leiteira ou Cremeira --");
   console.log(`Material: ${l_c.material()}`);
   console.log(`Descricao: ${l_c.descricao_formato()}`);
   console.log(`Cor: ${l_c.cor()}`);
+  console.log("");
 }
 
 // Demonstração
 
-console.log("-- Fabricando jogo de chá --");
-console.log("Estilo: Classico");
-montarJogo(new Jogo_Classico());
+console.log("Seja bem vindo(a) a fabrica de jogos de cha!");
 
-console.log("");
+console.log("MENU");
+console.log("1 - Jogo de cha Classico");
+console.log("2 - Jogo de cha Moderno");
+console.log("3 - Jogo de cha Vintage");
+console.log("0 - Sair");
 
-console.log("-- Fabricando jogo de chá --");
-console.log("Estilo: Moderno");
-montarJogo(new Jogo_Moderno());
+var opcao = '-1'; // Apenas para a variavel começar com algum valor
 
-console.log("");
+while (opcao !== "0") {
+    opcao = prompt("Qual modelo voce deseja visualizar? ");
 
-console.log("-- Fabricando jogo de chá --");
-console.log("Estilo: Vintage");
-montarJogo(new Jogo_Vintage());
+    switch(opcao) {
+        case "1":
+            console.log("-- Fabricando jogo de chá I --");
+            console.log("Estilo: Classico");
+            montarJogo(new Jogo_Classico());
+            break;
+        case "2":
+            console.log("-- Fabricando jogo de chá II --");
+            console.log("Estilo: Moderno");
+            montarJogo(new Jogo_Moderno());
+            break;
+        case "3":
+            console.log("-- Fabricando jogo de chá III --");
+            console.log("Estilo: Vintage");
+            montarJogo(new Jogo_Vintage());
+            break;
+        case "0":
+            console.log("Encerrando...");
+            console.log("Obrigado por visitar nossa fabrica de jogos de cha!");
+            break;
+        default:
+            console.log("Opção inválida!");
+    }
+}

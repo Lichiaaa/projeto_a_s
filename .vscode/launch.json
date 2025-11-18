@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Executar TS em modo ESM",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        // Esta linha diz ao Node.js para usar o loader ESM do ts-node
+        "--loader",
+        "ts-node/esm" 
+      ],
+      // VERIFIQUE: Coloque aqui o caminho para o seu arquivo principal
+      "program": "${workspaceFolder}/projeto_a_s.ts", 
+      "cwd": "${workspaceFolder}",
+      // IMPORTANTE: Isso garante que o prompt-sync funcione no terminal
+      "console": "integratedTerminal", 
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
